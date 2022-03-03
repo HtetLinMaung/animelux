@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
-export default function Latest() {
+export default function Animelux() {
   const router = useRouter();
 
   useEffect(() => {
