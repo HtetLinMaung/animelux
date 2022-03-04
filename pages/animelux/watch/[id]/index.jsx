@@ -8,11 +8,12 @@ export default function Watch() {
   const [related_episodes, setRelatedEpisodes] = useState([]);
   const [stream, setStream] = useState("");
   const [title, setTitle] = useState("");
+  const [screenWidth, setScreenWidth] = useState(0);
 
   const fetchWatch = async () => {
     console.log("fetching stream");
     const [res, err] = await rest.get(
-      `/gganime/episode-detail?link=https://ww2.gogoanimes.org/watch/${router.query.id}`
+      `/gganime/episode-detail?link=${router.query.id}`
     );
 
     if (!err) {
@@ -34,6 +35,13 @@ export default function Watch() {
   };
 
   useEffect(() => {
+    window.onresize = () => {
+      console.log(window.innerWidth);
+      setScreenWidth(window.innerWidth);
+    };
+  }, []);
+
+  useEffect(() => {
     if (router.query.id) {
       fetchWatch();
     }
@@ -44,14 +52,14 @@ export default function Watch() {
       <h1 className="text-4xl my-7 mt-3">{title}</h1>
       <div className="flex lg:flex-nowrap flex-wrap mb-10">
         <iframe
-          height="750"
+          height={screenWidth > 624 ? "800" : "400"}
           allowFullScreen
-          className="lg:w-5/6 sm:w-full rounded-xl"
+          className="lg:w-5/6 sm:w-full w-full rounded-xl"
           src={stream}
         ></iframe>
         <ul
           style={{ height: "60vh" }}
-          className="shadow-lg rounded-xl ml-2 lg:w-1/6 w-full sm:w-full sm:static lg:sticky top-32 overflow-auto p-2 px-4 bg-black"
+          className="shadow-lg rounded-xl ml-2 lg:w-1/6 w-full sm:w-full sm:static lg:sticky top-32 overflow-auto p-2 px-4 bg-black mb-5"
         >
           {related_episodes.map((item, i) => (
             <Link
@@ -62,13 +70,11 @@ export default function Watch() {
               <li
                 style={{
                   fontSize: 12,
-                  backgroundColor: title
-                    .trim()
-                    .split(" ")
-                    .pop()
-                    .includes(item.link.split("-").pop().trim())
-                    ? "green"
-                    : "#323132",
+                  backgroundColor:
+                    title.replaceAll(/[a-zA-Z]/g, "").trim() ==
+                    item.name.replaceAll(/[a-zA-Z]/g, "").trim()
+                      ? "green"
+                      : "#323132",
                 }}
                 className="my-3 p-2 rounded-md ease-in-out duration-300 cursor-pointer"
               >
