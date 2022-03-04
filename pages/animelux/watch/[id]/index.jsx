@@ -8,7 +8,7 @@ export default function Watch() {
   const [related_episodes, setRelatedEpisodes] = useState([]);
   const [stream, setStream] = useState("");
   const [title, setTitle] = useState("");
-  const [screenWidth, setScreenWidth] = useState(800);
+  const [screenWidth, setScreenWidth] = useState(0);
 
   const fetchWatch = async () => {
     console.log("fetching stream");
@@ -35,8 +35,8 @@ export default function Watch() {
   };
 
   useEffect(() => {
+    setScreenWidth(window.innerWidth);
     window.onresize = () => {
-      console.log(window.innerWidth);
       setScreenWidth(window.innerWidth);
     };
   }, []);
