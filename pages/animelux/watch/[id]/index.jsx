@@ -8,7 +8,7 @@ export default function Watch() {
   const [related_episodes, setRelatedEpisodes] = useState([]);
   const [stream, setStream] = useState("");
   const [title, setTitle] = useState("");
-  const [screenWidth, setScreenWidth] = useState(0);
+  const [screenWidth, setScreenWidth] = useState(800);
 
   const fetchWatch = async () => {
     console.log("fetching stream");
