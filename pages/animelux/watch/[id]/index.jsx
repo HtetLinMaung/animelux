@@ -77,7 +77,7 @@ export default function Watch() {
                 style={{
                   fontSize: 12,
                   backgroundColor:
-                    current_episode == item.episode ? "green" : "#323132",
+                    current_episode == item.episode ? "#3CBC77" : "#323132",
                 }}
                 className="my-3 p-2 rounded-md ease-in-out duration-300 cursor-pointer"
               >

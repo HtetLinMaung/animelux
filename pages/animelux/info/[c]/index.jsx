@@ -59,7 +59,16 @@ export default function Info() {
               <div key={key}>
                 <h3 className=" font-bold mb-3">{key.toUpperCase()}</h3>
                 <p className="mb-5 text-sm">
-                  {key.toLowerCase() == "genre" ? value.join(", ") : value}
+                  {key.toLowerCase() == "genre"
+                    ? value.map((v, i) => (
+                        <Link
+                          key={i}
+                          href={`/animelux/genre/${v.toLowerCase()}/page/1`}
+                        >
+                          <a className="mr-2">{v}</a>
+                        </Link>
+                      ))
+                    : value}
                 </p>
               </div>
             ) : (
