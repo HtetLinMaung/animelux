@@ -1,9 +1,13 @@
 import Link from "next/link";
 import rest from "../../../../../utils/rest";
+import Head from "next/head";
 
 export default function Latest({ items, pages, p }) {
   return (
     <div className="container mx-auto px-4 pt-10">
+      <Head>
+        <title>Latest Animes</title>
+      </Head>
       <h1 className="text-4xl my-7 text-center sm:text-left">Latest Animes</h1>
 
       <div className="grid md:grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 justify-items-center gap-5">

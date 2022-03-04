@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import rest from "../../../../utils/rest";
 import Link from "next/link";
+import Head from "next/head";
 
 export default function Watch() {
   const router = useRouter();
   const [related_episodes, setRelatedEpisodes] = useState([]);
   const [stream, setStream] = useState("");
   const [title, setTitle] = useState("");
+  const [current_episode, setCurrentEpisode] = useState("");
   const [screenWidth, setScreenWidth] = useState(0);
 
   const fetchWatch = async () => {
@@ -19,6 +21,7 @@ export default function Watch() {
     if (!err) {
       setStream(res.data.data.stream);
       setTitle(res.data.data.title);
+      setCurrentEpisode(res.data.data.current_episode);
       fetchReleatedEpisodes(res.data.data.eps);
     }
   };
@@ -49,6 +52,9 @@ export default function Watch() {
 
   return (
     <div className="container mx-auto px-4 pt-10">
+      <Head>
+        <title>{title}</title>
+      </Head>
       <h1 className="text-4xl my-7 mt-3">{title}</h1>
       <div className="flex lg:flex-nowrap flex-wrap mb-10">
         <iframe
@@ -71,10 +77,7 @@ export default function Watch() {
                 style={{
                   fontSize: 12,
                   backgroundColor:
-                    title.replaceAll(/[a-zA-Z]/g, "").trim() ==
-                    item.name.replaceAll(/[a-zA-Z]/g, "").trim()
-                      ? "green"
-                      : "#323132",
+                    current_episode == item.episode ? "green" : "#323132",
                 }}
                 className="my-3 p-2 rounded-md ease-in-out duration-300 cursor-pointer"
               >

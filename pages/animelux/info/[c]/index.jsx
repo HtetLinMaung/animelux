@@ -2,6 +2,7 @@ import rest from "../../../../utils/rest";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import Head from "next/head";
 
 export default function Info() {
   const router = useRouter();
@@ -38,6 +39,9 @@ export default function Info() {
 
   return (
     <div className="container mx-auto px-4 pt-5 mb-10">
+      <Head>
+        <title>{item.name}</title>
+      </Head>
       <h1 className="text-4xl my-7">{item.name}</h1>
 
       <div className="flex flex-wrap justify-center">
