@@ -49,7 +49,7 @@ export default function SearchModal() {
       <div className="w-auto h-full px-10 md:px-20 pt-24">
         <div className=" bg-white shadow-lg rounded-2xl overflow-hidden ease-in-out duration-300">
           <div
-            className="flex bg-transparent  px-2 sm:px-5 md:px-10 border-b-2"
+            className="flex bg-transparent items-center px-2 sm:px-5 md:px-10 border-b-2"
             onClick={(e) => e.stopPropagation()}
           >
             <svg
@@ -66,7 +66,7 @@ export default function SearchModal() {
               role="img"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 512 512"
-              className="svg-inline--fa fk-search fk-w-16 fk-9x"
+              className="svg-inline--fa fk-search fk-w-16 fk-9x h-6 md:h-auto"
             >
               <g className="fk-group">
                 <path
