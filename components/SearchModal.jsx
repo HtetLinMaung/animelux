@@ -40,7 +40,7 @@ export default function SearchModal() {
   return (
     <div
       onClick={closeModal}
-      className="fixed top-0 left-0 w-screen h-screen z-50 ease-in-out duration-300 overflow-auto"
+      className="fixed top-0 left-0 w-screen h-screen z-50 ease-in-out duration-300"
       style={{
         backgroundColor: "#000000e6",
         transform: state.search_modal ? "scale(1)" : "scale(0)",
@@ -96,28 +96,32 @@ export default function SearchModal() {
               onChange={(e) => setSearch(e.target.value)}
             />
           </div>
-          {items.map((item, i) => (
-            <div
-              onClick={() => {
-                closeModal();
-                router.push(`/animelux/info/${item.category.split("/").pop()}`);
-              }}
-              key={i}
-              className="p-2 flex text-black hover:bg-gray-300 ease-in-out duration-300 rounded-2xl my-4 mx-2 overflow-hidden cursor-pointer"
-            >
+          <div className="overflow-auto" style={{ maxHeight: "50vh" }}>
+            {items.map((item, i) => (
               <div
-                className="rounded-md shadow-lg hover:-translate-y-1 ease-in-out duration-300 bg-cover"
-                style={{
-                  backgroundImage: `url('${item.img}')`,
-                  minWidth: 70,
-                  minHeight: 85,
-                  width: 80,
-                  height: 100,
+                onClick={() => {
+                  closeModal();
+                  router.push(
+                    `/animelux/info/${item.category.split("/").pop()}`
+                  );
                 }}
-              ></div>
-              <div className="pl-5 flex items-center flex-1">{item.name}</div>
-            </div>
-          ))}
+                key={i}
+                className="p-2 flex text-black hover:bg-gray-300 ease-in-out duration-300 rounded-2xl my-4 mx-2 overflow-hidden cursor-pointer"
+              >
+                <div
+                  className="rounded-md shadow-lg hover:-translate-y-1 ease-in-out duration-300 bg-cover"
+                  style={{
+                    backgroundImage: `url('${item.img}')`,
+                    minWidth: 70,
+                    minHeight: 85,
+                    width: 80,
+                    height: 100,
+                  }}
+                ></div>
+                <div className="pl-5 flex items-center flex-1">{item.name}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
