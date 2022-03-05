@@ -9,6 +9,8 @@ export default function Watch() {
   const [related_episodes, setRelatedEpisodes] = useState([]);
   const [stream, setStream] = useState("");
   const [title, setTitle] = useState("");
+  const [anime_name, setAnimeName] = useState("");
+  const [category, setCategory] = useState("");
   const [current_episode, setCurrentEpisode] = useState("");
   const [screenWidth, setScreenWidth] = useState(0);
 
@@ -21,6 +23,8 @@ export default function Watch() {
     if (!err) {
       setStream(res.data.data.stream);
       setTitle(res.data.data.title);
+      setAnimeName(res.data.data.anime_name);
+      setCategory(res.data.data.category);
       setCurrentEpisode(res.data.data.current_episode);
       fetchReleatedEpisodes(res.data.data.eps);
     }
@@ -56,6 +60,11 @@ export default function Watch() {
         <title>{title}</title>
       </Head>
       <h1 className="text-4xl my-7 mt-3">{title}</h1>
+      <p className="my-5 text-sm">
+        <Link href={`/animelux/info/${category.split("/").pop()}`} passHref>
+          <a>{anime_name}</a>
+        </Link>
+      </p>
       <div className="flex lg:flex-nowrap flex-wrap mb-10">
         <iframe
           height={screenWidth > 624 ? "800" : "400"}

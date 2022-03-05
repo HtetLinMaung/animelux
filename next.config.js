@@ -9,6 +9,9 @@ const nextConfig = {
   rewrites() {
     return [{ source: "/animelux/_next/:path*", destination: "/_next/:path*" }];
   },
+  env: {
+    server: "http://150.95.82.125:4001",
+  },
 };
 
 module.exports = nextConfig;

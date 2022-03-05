@@ -37,6 +37,34 @@ export default function Info() {
     }
   }, [router.query.c]);
 
+  const DescItem = ({ k, v }) => {
+    const key = k.toLowerCase();
+    if (key == "genre") {
+      return v.map((text, i) => (
+        <Link key={i} href={`/animelux/genre/${text.toLowerCase()}/page/1`}>
+          <a className="mr-2">{text}</a>
+        </Link>
+      ));
+    } else if (key == "type") {
+      return (
+        <Link
+          href={`/animelux/sub-category/${v
+            .toLowerCase()
+            .replaceAll(" ", "-")}/page/1`}
+        >
+          <a className="mr-2">{v}</a>
+        </Link>
+      );
+    } else if (key == "status" && v.toLowerCase() != "upcoming") {
+      return (
+        <Link href={`/animelux/status/${v.toLowerCase()}/page/1`}>
+          <a className="mr-2">{v}</a>
+        </Link>
+      );
+    }
+    return v;
+  };
+
   return (
     <div className="container mx-auto px-4 pt-5 mb-10">
       <Head>
@@ -59,16 +87,7 @@ export default function Info() {
               <div key={key}>
                 <h3 className=" font-bold mb-3">{key.toUpperCase()}</h3>
                 <p className="mb-5 text-sm">
-                  {key.toLowerCase() == "genre"
-                    ? value.map((v, i) => (
-                        <Link
-                          key={i}
-                          href={`/animelux/genre/${v.toLowerCase()}/page/1`}
-                        >
-                          <a className="mr-2">{v}</a>
-                        </Link>
-                      ))
-                    : value}
+                  <DescItem k={key} v={value} />
                 </p>
               </div>
             ) : (

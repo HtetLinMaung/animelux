@@ -4,7 +4,7 @@ import Head from "next/head";
 
 export default function Latest({ items, pages, p }) {
   return (
-    <div className="container mx-auto px-4 pt-10">
+    <div className="container mx-auto px-4 pt-10 mb-28">
       <Head>
         <title>Latest Animes</title>
       </Head>

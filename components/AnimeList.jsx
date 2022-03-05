@@ -1,14 +1,13 @@
-import Link from "next/link";
-import rest from "../../../../../../utils/rest";
 import Head from "next/head";
+import Link from "next/link";
 
-export default function Latest({ items, pages, p, kw }) {
+export default function AnimeList({ title, module, items, pages, p }) {
   return (
     <div className="container mx-auto px-4 pt-10 mb-28">
       <Head>
-        <title>Search Results</title>
+        <title>{title}</title>
       </Head>
-      <h1 className="text-4xl my-7 text-center sm:text-left">Search Results</h1>
+      <h1 className="text-4xl my-7 text-center sm:text-left">{title}</h1>
 
       <div className="grid md:grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 justify-items-center gap-5">
         {items.map((item, i) => (
@@ -17,15 +16,8 @@ export default function Latest({ items, pages, p, kw }) {
             className="flex justify-center flex-col"
             style={{ width: 164 * 1.5 }}
           >
-            {/* <Image
-              className="cursor-pointer rounded-2xl shadow-lg  overflow-visible"
-              src={item.img}
-              alt={item.name}
-              width={164}
-              height={229}
-            /> */}
             <Link
-              href={`/animelux/watch/${item.link.split("/").pop()}`}
+              href={`/animelux/info/${item.link.split("/").pop()}`}
               passHref
             >
               <div
@@ -38,7 +30,7 @@ export default function Latest({ items, pages, p, kw }) {
               ></div>
             </Link>
             <Link
-              href={`/animelux/watch/${item.link.split("/").pop()}`}
+              href={`/animelux/info/${item.link.split("/").pop()}`}
               passHref
             >
               <a
@@ -61,7 +53,7 @@ export default function Latest({ items, pages, p, kw }) {
       >
         <ul className="my-7 inline-flex bg-white rounded-2xl p-2 px-3 shadow-lg">
           {pages.map((page, i) => (
-            <Link key={i} href={`/animelux/search/${kw}/page/${page}`} passHref>
+            <Link key={i} href={`/animelux/${module}/page/${page}`} passHref>
               <li
                 className="cursor-pointer rounded-lg px-2 mx-1 py-1 text-sm flex items-center"
                 style={{
@@ -77,33 +69,4 @@ export default function Latest({ items, pages, p, kw }) {
       </div>
     </div>
   );
-}
-
-export async function getServerSideProps(context) {
-  const { p, kw } = context.query;
-
-  let items = [];
-  let pages = [1, 2, 3, 4, 5];
-  const [res, err] = await rest.get("/gganime/search", {
-    page: p,
-    keyword: kw,
-  });
-
-  if (p >= 5) {
-    const n = parseInt(p);
-    pages = [n - 2, n - 1, n, n + 1, n + 2];
-  }
-
-  if (!err) {
-    items = res.data.data;
-  }
-
-  return {
-    props: {
-      items,
-      pages,
-      p,
-      kw,
-    },
-  };
 }

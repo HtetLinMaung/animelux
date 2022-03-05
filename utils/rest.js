@@ -1,7 +1,5 @@
 const axios = require("axios");
-const config = require("../app.config.json");
-
-const prefix = `${config.server}/fetchit`;
+const prefix = `${process.env.server}/fetchit`;
 
 const rest = {
   get: async (url, params = {}) => {

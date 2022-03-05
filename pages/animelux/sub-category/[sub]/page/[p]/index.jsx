@@ -1,27 +1,22 @@
 import rest from "../../../../../../utils/rest";
 import AnimeList from "../../../../../../components/AnimeList";
 
-// uppercase first char
-function ucfirst(str) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
-
-export default function Popular(props) {
+export default function SubCategory(props) {
   return (
     <AnimeList
       {...props}
-      module={`genre/${props.genre}`}
-      title={`Genre ${ucfirst(props.genre)}`}
+      module={`sub-category/${props.sub}`}
+      title={props.sub.toUpperCase()}
     />
   );
 }
 
 export async function getServerSideProps(context) {
-  const { p, genre } = context.query;
+  const { p, sub } = context.query;
 
   let items = [];
   let pages = [1, 2, 3, 4, 5];
-  const [res, err] = await rest.get(`/gganime/genre/${genre}`, {
+  const [res, err] = await rest.get(`/gganime/sub-category/${sub}`, {
     page: p,
   });
 
@@ -39,7 +34,7 @@ export async function getServerSideProps(context) {
       items,
       pages,
       p,
-      genre,
+      sub,
     },
   };
 }
