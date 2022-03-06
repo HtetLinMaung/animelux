@@ -7,6 +7,7 @@ export default function Latest({ items, pages, p }) {
     <div className="container mx-auto px-4 pt-10 mb-28">
       <Head>
         <title>Latest Animes</title>
+        <link rel="icon" href="/animelux/favicon.ico" />
       </Head>
       <h1 className="text-4xl my-7 text-center sm:text-left">Latest Animes</h1>
 

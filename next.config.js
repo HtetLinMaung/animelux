@@ -7,7 +7,12 @@ const nextConfig = {
   },
   assetPrefix: "/animelux",
   rewrites() {
-    return [{ source: "/animelux/_next/:path*", destination: "/_next/:path*" }];
+    return [
+      {
+        source: "/animelux/_next/:path*",
+        destination: "/_next/:path*",
+      },
+    ];
   },
   env: {
     server: "http://150.95.82.125:4001",

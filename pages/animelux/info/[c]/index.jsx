@@ -69,6 +69,7 @@ export default function Info() {
     <div className="container mx-auto px-4 pt-5 mb-10">
       <Head>
         <title>{item.name}</title>
+        <link rel="icon" href="/animelux/favicon.ico" />
       </Head>
       <h1 className="text-4xl my-7">{item.name}</h1>
 

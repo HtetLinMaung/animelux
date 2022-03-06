@@ -58,6 +58,7 @@ export default function Watch() {
     <div className="container mx-auto px-4 pt-10">
       <Head>
         <title>{title}</title>
+        <link rel="icon" href="/animelux/favicon.ico" />
       </Head>
       <h1 className="text-4xl my-7 mt-3">{title}</h1>
       <p className="my-5 text-sm">
@@ -90,7 +91,7 @@ export default function Watch() {
                 }}
                 className="my-3 p-2 rounded-md ease-in-out duration-300 cursor-pointer"
               >
-                <a>{item.name.replace("EP", "Episode")}</a>
+                {item.name.replace("EP", "Episode")}
               </li>
             </Link>
           ))}
