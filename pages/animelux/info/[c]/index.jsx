@@ -42,7 +42,7 @@ export default function Info() {
     if (key == "genre") {
       return v.map((text, i) => (
         <Link key={i} href={`/animelux/genre/${text.toLowerCase()}/page/1`}>
-          <a className="mr-2">{text}</a>
+          <a className="mr-2 mb-2">{text}</a>
         </Link>
       ));
     } else if (key == "type") {
@@ -75,19 +75,19 @@ export default function Info() {
 
       <div className="flex flex-wrap justify-center">
         <div
-          className="rounded-2xl shadow-lg ease-in-out duration-300 bg-cover mb-10"
+          className="rounded-2xl shadow-lg ease-in-out duration-300 bg-cover mb-10 w-full"
           style={{
             backgroundImage: `url('${item.img}')`,
-            width: 164 * 2,
+            maxWidth: 164 * 2,
             height: 229 * 2,
           }}
         ></div>
-        <div className="md:pl-5 flex-auto sm:flex-auto md:flex-1">
+        <div className="md:pl-5 flex-auto sm:flex-auto md:flex-1 w-full md:w-auto lg:w-auto">
           {Object.entries(item).map(([key, value]) =>
             !["eps", "img", "name"].includes(key) ? (
               <div key={key}>
-                <h3 className=" font-bold mb-3">{key.toUpperCase()}</h3>
-                <p className="mb-5 text-sm">
+                <h3 className="text-lg font-bold mb-3">{key.toUpperCase()}</h3>
+                <p className="mb-5 flex flex-wrap">
                   <DescItem k={key} v={value} />
                 </p>
               </div>
@@ -97,7 +97,7 @@ export default function Info() {
           )}
           <h3 className=" font-bold mb-3">Episodes</h3>
           <div
-            className="flex flex-wrap my-3 overflow-auto p-2"
+            className="flex flex-wrap my-3 overflow-auto py-2"
             style={{ maxHeight: 220 }}
           >
             {related_episodes.map((episode, i) => (
