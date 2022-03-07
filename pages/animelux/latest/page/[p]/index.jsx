@@ -9,8 +9,8 @@ export default function Latest({ items, pages, p }) {
         <title>Latest Animes</title>
         <link rel="icon" href="/animelux/favicon.ico" />
       </Head>
-      <h1 className="text-4xl my-7 text-center sm:text-left">Latest Animes</h1>
 
+      <h1 className="text-4xl my-7 text-center sm:text-left">Latest Animes</h1>
       <div className="grid md:grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 justify-items-center gap-5">
         {items.map((item, i) => (
           <div
@@ -55,7 +55,6 @@ export default function Latest({ items, pages, p }) {
           </div>
         ))}
       </div>
-
       <div
         className="flex justify-center fixed bottom-5 w-full right-0"
         style={{ color: "#323132" }}
