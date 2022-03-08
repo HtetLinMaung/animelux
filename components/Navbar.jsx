@@ -11,6 +11,19 @@ export default function Navbar() {
       className="sticky top-0 z-40 w-full shadow-lg"
       style={{ backgroundColor: "#323132" }}
     >
+      <div className="p-3 flex justify-center items-center text-lg bg-black ">
+        <h1 className="text-center">
+          Support Myanmar 🇲🇲{" "}
+          <a
+            className="ml-1"
+            href="https://www.facebook.com/click2donatemm"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Help Provide Humanitarian Aid to Myanmar.
+          </a>
+        </h1>
+      </div>
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center">
