@@ -8,7 +8,7 @@ const rest = {
       const res = await axios.get(`${prefix}${url}`, { params: params });
       return [res, null];
     } catch (err) {
-      log("error", err.message);
+      // log("error", err.message);
       return [null, err];
     }
   },
@@ -17,7 +17,7 @@ const rest = {
       const res = await axios.post(`${prefix}${url}`, body);
       return [res, null];
     } catch (err) {
-      log("error", err.message);
+      // log("error", err.message);
       return [null, err];
     }
   },
